@@ -16,12 +16,19 @@ setInterval(()=>{
     let centenas = secondsString[secondsString.length-3];
     let millares = secondsString[secondsString.length-4];
     let decMillar = secondsString[secondsString.length-5];
-    let millonaco = secondsString[secondsString.length-6];
+    let centMillar = secondsString[secondsString.length-6];
     
     seconds++;
-
-ReactDOM.render(<Home pepino={unidades} segundos1={decenas} minutos2={centenas} minutos1={millares} horas2={decMillar} horas1={millonaco}/>, document.querySelector("#app"));
+ReactDOM.render(<Home segundos1={unidades} segundos2={decenas} minutos1={centenas} minutos2={millares} horas1={decMillar} horas2={centMillar}/>, document.querySelector("#app"));
 },1000);
+
+
+const BOTON = document.querySelector("#cuentaregresiva")
+
+BOTON.addEventListener("click",()=>{
+  
+
+})
 
 //render your react application
 
