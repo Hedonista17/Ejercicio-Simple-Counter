@@ -23,12 +23,9 @@ ReactDOM.render(<Home segundos1={unidades} segundos2={decenas} minutos1={centena
 },1000);
 
 
-const BOTON = document.querySelector("#cuentaregresiva")
 
-BOTON.addEventListener("click",()=>{
   
 
-})
 
 //render your react application
 
