@@ -8,6 +8,7 @@ import "../styles/index.css";
 //import your own components
 import Home from "./component/home.jsx";
 
+//function Contador (){ ???
 let seconds =0;
 setInterval(()=>{
     let secondsString = seconds.toString();
@@ -22,10 +23,10 @@ setInterval(()=>{
 ReactDOM.render(<Home segundos1={unidades} segundos2={decenas} minutos1={centenas} minutos2={millares} horas1={decMillar} horas2={centMillar}/>, document.querySelector("#app"));
 },1000);
 
-
+//}
 
   
-
+//export default Contador  //onClick={clearInterval(Contador)}???
 
 //render your react application
 
