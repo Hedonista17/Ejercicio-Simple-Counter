@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, {useState,useEffect}from "react";
 import Botones from "./botones.jsx"
 //import Contador from "../index.js";
 
@@ -28,30 +28,80 @@ let reset = {
 }
 
 //create your first component
-const Home = (props) => {
-  return (
-    <div className="text-center">
+const Home = () => {
+
+  const [count, setCount] = useState(0);
+	const [countStr, setCountStr] = useState('');
+	const [intervalId, setIntervalId] = useState(null);
+
+	useEffect(() => {
+		setCountStr(count.toString());
+	}, [count]);
+
+	// AUMENTAR CONTADOR
+
+  
+
+	function handlePlay() {
+		clearInterval(intervalId);
+		const newInterval = setInterval(() => {
+			setCount(prevCount => prevCount + 1);
+		}, 1000);
+		setIntervalId(newInterval);
+    
+	}
+
+	// RESTAR CONTADOR
+
+	function handleRest() {
+		clearInterval(intervalId);
+		const newInterval = setInterval(() => {
+			setCount(prevCount => prevCount - 1);
+		}, 1000);
+		setIntervalId(newInterval);
+	}
+
+	// REINICIAR CONTADOR
+
+	function handleReset() {
+		clearInterval(intervalId);
+		setCount(0);
+	}
+
+	// PAUSAR CONTADOR
+	function handlePause() {
+		clearInterval(intervalId);
+		setIntervalId(null);
+	}
+
+  function alert(){
+    if (setCount === 10) { alert("Se terminó el tiempo")}
+  }
+
+	return (
+		<div className="text-center">
       <h1> WELCOME TO THE SIMPLE COUNTER!</h1>
       <div className="container " id="contador">
         <div className="reloj mx-2 "><i class="fa-regular fa-clock fa-sm"></i></div>
-        <div className="horas2 mx-2">{props.horas2 || 0}</div>
-        <div className="horas1 mx-2">{props.horas1 || 0}</div>
-        <div className="minutos2 mx-2">{props.minutos2|| 0}</div>
-        <div className="minutos1 mx-2">{props.minutos1|| 0}</div>
-        <div className="segundos2 mx-2">{props.segundos2 || 0}</div>
-        <div className="segundos1 mx-2">{props.segundos1 || 0} </div>
+        <div className=" mx-2">{countStr[countStr.length - 6] || 0}</div>
+        <div className=" mx-2">{countStr[countStr.length - 5] || 0}</div>
+        <div className=" mx-2">{countStr[countStr.length - 4] || 0}</div>
+        <div className=" mx-2">{countStr[countStr.length - 3] || 0}</div>
+        <div className=" mx-2">{countStr[countStr.length - 2] || 0}</div>
+        <div className=" mx-2">{countStr[countStr.length - 1] || 0} </div>
       </div>
       <div>
-      <h4><i className="fa-solid fa-angles-down"></i> If you want to try something else <i className="fa-solid fa-angles-down"></i></h4>
+      <h4><i className="fa-solid fa-angles-down"></i> Play to Start<i className="fa-solid fa-angles-down"></i></h4>
       </div>
       <div className="d-flex position-absolute top-75 start-50 translate-middle">
-        <Botones icono={cuentaAtrás.icono} nombre={cuentaAtrás.nombre}/>
-        <Botones icono={play.icono} nombre={play.nombre}/>
-        <Botones icono={pausa.icono} nombre={pausa.nombre}/>
-        <Botones icono={reset.icono} nombre={reset.nombre}/>
+        <Botones funcionalidad= {handleRest} icono={cuentaAtrás.icono} nombre={cuentaAtrás.nombre}/>
+        <Botones funcionalidad= {handlePlay} icono={play.icono} nombre={play.nombre}/>
+        <Botones funcionalidad= {handlePause} icono={pausa.icono} nombre={pausa.nombre}/>
+        <Botones funcionalidad= {handleReset} icono={reset.icono} nombre={reset.nombre}/>
       </div>
       </div>
-  );
+  )
+  
 };
 
 export default Home;
